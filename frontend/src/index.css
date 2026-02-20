@@ -1,0 +1,330 @@
+/* Basic reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: #f4f6f9;
+  color: #333;
+}
+
+/* App container */
+.app-container {
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #f4f6f9;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  background: white;
+  padding: 15px 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.header h1 {
+  font-size: 1.8rem;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.status-dot.online {
+  background-color: #2ecc71;
+}
+
+.status-dot.offline {
+  background-color: #e74c3c;
+}
+
+.avatars {
+  display: flex;
+  gap: 4px;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #3498db;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.user-badge {
+  font-size: 0.9rem;
+  color: #666;
+  background: #f0f0f0;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+
+.user-badge span {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+/* Board */
+.board {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 20px;
+}
+
+.column {
+  flex: 1;
+  min-width: 280px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  padding: 15px;
+}
+
+.column h2 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.task-list {
+  min-height: 200px;
+}
+
+.task-card {
+  background: white;
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 10px;
+  cursor: grab;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  transition: box-shadow 0.2s, transform 0.1s;
+}
+
+.task-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.task-card:active {
+  cursor: grabbing;
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.task-title {
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #2c3e50;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0 4px;
+}
+
+.delete-btn:hover {
+  color: #e74c3c;
+}
+
+.task-description {
+  font-size: 0.8rem;
+  color: #7f8c8d;
+  margin-top: 6px;
+  line-height: 1.4;
+}
+
+.editing-indicator {
+  margin-top: 8px;
+  font-size: 0.75rem;
+  color: #e67e22;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.edit-btn {
+  background: none;
+  border: none;
+  color: #3498db;
+  font-size: 0.75rem;
+  margin-top: 8px;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.edit-btn:hover {
+  color: #2980b9;
+}
+
+/* Editing mode */
+.task-edit {
+  background: white;
+  border: 2px solid #3498db;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+.task-edit input,
+.task-edit textarea {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 8px;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  font-family: inherit;
+}
+
+.task-edit textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.edit-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.cancel-btn,
+.save-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background: #ecf0f1;
+  color: #7f8c8d;
+}
+
+.cancel-btn:hover {
+  background: #bdc3c7;
+}
+
+.save-btn {
+  background: #3498db;
+  color: white;
+}
+
+.save-btn:hover {
+  background: #2980b9;
+}
+
+.add-task-btn {
+  width: 100%;
+  padding: 10px;
+  margin-top: 15px;
+  background: #ecf0f1;
+  border: 1px dashed #bdc3c7;
+  border-radius: 6px;
+  color: #7f8c8d;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.add-task-btn:hover {
+  background: #d0d7de;
+}
+
+/* Username modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  width: 300px;
+  text-align: center;
+}
+
+.modal h2 {
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+.modal input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-size: 1rem;
+}
+
+.modal button {
+  width: 100%;
+  padding: 10px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.modal button:hover {
+  background: #2980b9;
+}
+.edit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
