@@ -3,7 +3,8 @@ import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import type { Task } from '../types';
 import { useTaskStore } from '../store/taskStore';
-import { usePresenceStore } from '../store/presenceStore';
+import { usePresenceStore, EditingInfo } from '../store/presenceStore';
+import { useStore } from 'zustand';
 import { shallow } from 'zustand/shallow';
 import { socket } from '../socket/client';
 
@@ -20,8 +21,12 @@ export default function TaskCard({ task }: TaskCardProps) {
 
   const isTemporary = task.id.startsWith('temp-');
 
-  // Use presence store with shallow equality to avoid unnecessary re-renders
-  const editingTasks = usePresenceStore(state => state.editingTasks, shallow);
+  // Use useStore with shallow equality for proper typing
+  const editingTasks = useStore(
+    usePresenceStore,
+    state => state.editingTasks,
+    shallow
+  );
 
   const usersForThisTask = useMemo(
     () => editingTasks.filter(e => e.taskId === task.id).map(e => e.username),
