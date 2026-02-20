@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { generateKeyBetween } from 'fractional-indexing'; // npm install this
+import { generateKeyBetween } from '../utils/rank';// npm install this
 
 const prisma = new PrismaClient();
 
