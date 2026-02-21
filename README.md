@@ -31,10 +31,19 @@ For updates, merges changes (if task exists) or inserts it (if new).
 We are treating the server as the source of truth. All operations are processed in the order they arrive, and conflicts are resolved deterministically.
 
 Scenario	Resolution
+
 Move + Edit	Moves change column/rank; edits change title/description.(focusing on title first) These are disjoint fields, so both are preserved. The server applies both operations – final task contains both modifications.
-Move + Move	The operation that arrives last wins. The losing client receives a broadcast of the final task and shows a notification (via alert or toast).
+
+
+Move + Move	The operation that arrives last wins. The losing client receives a broadcast of the final task and shows a notification (via toast).
+
+
 Reorder + Add	Both operations generate unique ranks (fractional indexing). The server merges them; final order is consistent when sorted by rank.
+
+
 Notification for losing user: In applyServerUpdate, we detect if a task’s column changed and the previous column existed (i.e., the user didn’t initiate this move). A simple alert is shown; this can be replaced with a toast library for better UX.
+
+
 # FOR THIS ACTUALLY TRYING TO TO  Conflict-free Replicated Data Types (CRDT) .We also know that Google Docs is using OT and it's working pretty well for real-time edition of rich documents.
 
 

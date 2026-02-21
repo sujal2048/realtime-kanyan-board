@@ -7,11 +7,13 @@ const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || window.location.origin;
 export const socket = io(SOCKET_URL, {
   autoConnect: false, // we'll connect after username is set
   reconnection: true,
+  transports: ['websocket', 'polling'],
 });
 
 socket.on('connect', () => {
   console.log('connected');
   useTaskStore.getState().setOnline(true);
+  socket.emit('join_board', username);
 });
 
 socket.on('disconnect', () => {
