@@ -1,4 +1,4 @@
-import  { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Board from './components/Board';
 import UsernameModal from './components/UsernameModal';
 import { socket } from './socket/client';
@@ -13,6 +13,7 @@ function App() {
   useEffect(() => {
     if (username) {
       socket.connect();
+      // Emit join_board after connection (socket queues events until connected)
       socket.emit('join_board', username);
     }
     return () => {
@@ -25,26 +26,20 @@ function App() {
   }
 
   return (
-    <div className="app-container">
-      <header className="header">
+    <div className="app">
+      {/* header with presence and offline status */}
+      <div className="header">
         <h1>Real-Time Task Board</h1>
-        <div className="header-right">
-          <div className="status">
-            <div className={`status-dot ${online ? 'online' : 'offline'}`} />
-            <span>{online ? 'Online' : 'Offline'}</span>
-          </div>
+        <div>
+          {online ? '🟢 Online' : '🔴 Offline'}
           <div className="avatars">
-            {onlineUsers.map((user, i) => (
-              <div key={i} className="avatar" title={user}>
-                {user.charAt(0).toUpperCase()}
-              </div>
+            {onlineUsers.map(user => (
+              <span key={user} className="avatar">{user.charAt(0)}</span>
             ))}
           </div>
-          <div className="user-badge">
-            You: <span>{username}</span>
-          </div>
+          <span>You: {username}</span>
         </div>
-      </header>
+      </div>
       <Board />
     </div>
   );

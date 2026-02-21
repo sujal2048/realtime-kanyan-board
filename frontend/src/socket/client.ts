@@ -12,8 +12,9 @@ export const socket = io(SOCKET_URL, {
 
 socket.on('connect', () => {
   console.log('connected');
+  console.log('✅ Socket connected, id:', socket.id);
   useTaskStore.getState().setOnline(true);
-  socket.emit('join_board', username);
+  //socket.emit('join_board', username);
 });
 
 socket.on('disconnect', () => {
