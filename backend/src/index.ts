@@ -31,9 +31,8 @@ app.get('/*path', (req, res) => {
 
 registerSocketHandlers(io);
 
-const PORT = process.env.PORT || 3001;
-
-server.listen(PORT, '0.0.0.0', () => {  // ← Add '0.0.0.0'
-  console.log(`Server running on port ${PORT}`);
-  console.log(`Listening on 0.0.0.0:${PORT}`);
+// Convert PORT to number and bind to all network interfaces
+const PORT = parseInt(process.env.PORT || '3001', 10);
+server.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT} (0.0.0.0)`);
 });
