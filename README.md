@@ -44,8 +44,7 @@ Reorder + Add	Both operations generate unique ranks (fractional indexing). The s
 Notification for losing user: In applyServerUpdate, we detect if a task’s column changed and the previous column existed (i.e., the user didn’t initiate this move). A simple alert is shown; this can be replaced with a toast library for better UX.
 
 
-# FOR THIS ACTUALLY TRYING TO TO  Conflict-free Replicated Data Types (CRDT) .We also know that Google Docs is using OT and it's working pretty well for real-time edition of rich documents.
-
+# FOR THIS ACTUALLY TRYING TO TO  Conflict-free Replicated Data Types (CRDT) .
 
 
 # Offline Support
