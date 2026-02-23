@@ -1,5 +1,14 @@
-# Real-Time Collaborative Task Board
+# Real-Time Collaboration Algorithms
+The general theory of collaboration algorithms is to transmit changes between users with the goal of "eventual consistency". If multiple users make changes at the same time their copies of the document might look different for a while, but eventually every user's view will converge to be the same. This is done through what I call a "baseline"; incoming changes are integrated into the local data to form new baselines and local changes are sent based on the current baseline.
 
+
+1.In OT, every user action is broken down into one or more operations. These operations are transmitted between clients along with their baseline reference; if two users perform actions at the same time, incoming operations must be transformed to include the local operations that have happened since that baseline. They are then applied locally and form the new baseline.
+2.The magic of CRDT is due in large part to how it breaks down data into such small pieces that it generally doesn't need to transform the change itself, only the position of the change. For example, text data collaboration with CRDT treats every character as a separate entity.
+
+
+The limitations of CRDT are similar to what happened when the TP2 restriction was proposed for OT; the difficulty is in the data type. It is not as difficult as TP2 - there is a working OT+TP2 for JSON, but my impression is the CRDT implementation was easier to achieve - but it's still only appropriate for simple use cases.
+
+# About the Real-Time Collaborative task Board
 
 # Real‑Time Synchronization
 Each client connects to the Socket.IO server upon entering a username.
